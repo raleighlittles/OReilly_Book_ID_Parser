@@ -19,11 +19,7 @@ def retrieve_page_contents(url):
     raise ValueError('Invalid server response.')
     
 
-def parse_contents_into_list(text):
-    """
-    Turns the text of a page into a list of book IDs.
-    """
-    
+def parse_contents_into_list(text): 
     regex_string = "/library/cover/[\d]{2,}"
     
     book_id_matches = re.findall(regex_string, text)
@@ -39,30 +35,37 @@ def write_id_list_to_txt_file(id_list, filename):
     txt_file_handler.close()
         
 
-url_dict = {'math_and_science': 'https://www.safaribooksonline.com/topics/math-science',
-            'web_development': 'https://www.safaribooksonline.com/topics/web-development',
-            'computer_networking': 'https://www.safaribooksonline.com/topics/computer-networking',
-            'software_development': 'https://www.safaribooksonline.com/topics/software-development',
-            'databases': 'https://www.safaribooksonline.com/topics/databases'}
 
+if __name__ == '__main__':
 
+    url_dict = {'math_and_science': 'https://www.safaribooksonline.com/topics/math-science',
+                'web_development': 'https://www.safaribooksonline.com/topics/web-development',
+                'computer_networking': 'https://www.safaribooksonline.com/topics/computer-networking',
+                'software_development': 'https://www.safaribooksonline.com/topics/software-development',
+                'databases': 'https://www.safaribooksonline.com/topics/databases',
+                'IT_operations': 'https://www.safaribooksonline.com/topics/information-technology-operations',
+                'engineering': 'https://www.safaribooksonline.com/topics/engineering',
+                'analytics': 'https://www.safaribooksonline.com/topics/analytics',
+                'game_development': 'https://www.safaribooksonline.com/topics/game-development'}
 
-for topic, url in url_dict.items():
-    # don't expect to see a topic with more than 100 pages of books in it
-    book_list_for_topic = []
-    for page_number in range(0, 100):
-        try:
-            page_content = retrieve_page_contents(url + "?page={0}".format(page_number))
+    
+    for topic, url in url_dict.items():
+        # don't expect to see a topic with more than 100 pages of books in it
+        book_list_for_topic = []
+        for page_number in range(1, 100):
+            try:
+                page_content = retrieve_page_contents(url + "?page={0}".format(page_number))
+                
+            except ValueError:
+                break
             
-        except ValueError:
-            continue
-        finally:
-            book_list = parse_contents_into_list(page_content)
-            book_list_for_topic.extend(book_list)
-    print("{0} book ids found for topic: {1}".format(len(book_list_for_topic), topic))
-    write_id_list_to_txt_file(book_list_for_topic, topic)
-        
-        
-        
-        
+            finally:
+                book_list = parse_contents_into_list(page_content)
+                book_list_for_topic.extend(book_list)
+        print("{0} book ids found for topic: {1}".format(len(book_list_for_topic), topic))
+        write_id_list_to_txt_file(book_list_for_topic, topic)
+            
+            
+            
+            
     
