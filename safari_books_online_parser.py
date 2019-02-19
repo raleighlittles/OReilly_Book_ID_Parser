@@ -38,17 +38,19 @@ def write_id_list_to_txt_file(id_list, filename):
 
 if __name__ == '__main__':
 
-    url_dict = {'math_and_science': 'https://www.safaribooksonline.com/topics/math-science',
-                'web_development': 'https://www.safaribooksonline.com/topics/web-development',
-                'computer_networking': 'https://www.safaribooksonline.com/topics/computer-networking',
-                'software_development': 'https://www.safaribooksonline.com/topics/software-development',
-                'databases': 'https://www.safaribooksonline.com/topics/databases',
-                'IT_operations': 'https://www.safaribooksonline.com/topics/information-technology-operations',
-                'engineering': 'https://www.safaribooksonline.com/topics/engineering',
-                'analytics': 'https://www.safaribooksonline.com/topics/analytics',
-                'game_development': 'https://www.safaribooksonline.com/topics/game-development'}
+    url_dict = {'career-development': 'https://www.safaribooksonline.com/topics/career-development',
+                'data': 'https://www.safaribooksonline.com/topics/data',
+                'design': 'https://www.safaribooksonline.com/topics/design',
+                'hardware': 'https://www.safaribooksonline.com/topics/hardware',
+                'math_science_engineering': 'https://www.safaribooksonline.com/topics/math-science-engineering',
+                'other': 'https://www.safaribooksonline.com/topics/other',
+                'security': 'https://www.safaribooksonline.com/topics/security',
+                'software-development': 'https://www.safaribooksonline.com/topics/software-development',
+                'system-administration': 'https://www.safaribooksonline.com/topics/system-administration',
+                'travel-hobbies': 'https://www.safaribooksonline.com/topics/travel-hobbies',
+                'web-mobile': 'https://www.safaribooksonline.com/topics/web-mobile',
+                'business': 'https://www.safaribooksonline.com/topics/business'}
 
-    
     for topic, url in url_dict.items():
         # don't expect to see a topic with more than 100 pages of books in it
         book_list_for_topic = []
